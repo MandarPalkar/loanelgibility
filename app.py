@@ -55,23 +55,22 @@ def predict():
         else:
             married_yes = 0
 
-        if dependents == "1":
+        if dependents == 1:
             dependents_1 = 1
             dependents_2 = 0
             dependents_3 = 0
-
-        elif dependents == "2":
+        elif dependents == 2:
             dependents_1 = 0
             dependents_2 = 1
             dependents_3 = 0
-        elif dependents == "3+":
+        elif dependents == 3:
             dependents_1 = 0
             dependents_2 = 0
             dependents_3 = 1
         else:
             dependents_1 = 0
             dependents_2 = 0
-            dependents_3 = 0
+            dependents_3 = 1
 
         # education
         if education == "no":
@@ -90,7 +89,7 @@ def predict():
             semiurban = 1
             urban = 0
 
-        elif area == "Urban":
+        elif area == "urban":
             semiurban = 0
             urban = 1
 
