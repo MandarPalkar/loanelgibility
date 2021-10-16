@@ -17,22 +17,23 @@ with open("db.model", "rb") as f:
 def predict():
 
     req = request.get_json(force=True)
-
-    info = req.queryResult.parameters
+    data = req.get("queryResult")
+    info = data.get("parameters")
 
     # geeting data from request body
-    age = info.age[0].amount
-    gender = info.gender[0].lower()
-    married = info.marital_status[0].lower()
-    dependents = info.dependants[0]
-    education = info.education[0].lower()
-    employed = info.self_employment[0].lower()
-    credit = info.credit_history[0].lower()
-    area = info.property_type[0].lower()
-    ApplicantIncome = float(info.income[0])
-    CoapplicantIncome = float(info.coapp_income[0])
-    LoanAmount = float(info.loan_amount[0])
-    Loan_Amount_Term = float(info.loan_amount_term[0].amount)
+    age = info.get("age")[0].get("amount")
+
+    gender = info.get("gender")[0].lower()
+    married = info.get("marital_status")[0].lower()
+    dependents = info.get("dependants")[0]
+    education = info.get("education")[0].lower()
+    employed = info.get("self_employment")[0].lower()
+    credit = info.get("credit_history")[0].lower()
+    area = info.get("property_type")[0].lower()
+    ApplicantIncome = float(info.get("income")[0])
+    CoapplicantIncome = float(info.get("coapp_income")[0])
+    LoanAmount = float(info.get("loan_amount")[0])
+    Loan_Amount_Term = float(info.get("loan_amount_term")[0].get("amount"))
 
     if age <= 18 or age >= 60:
         res = {
@@ -59,14 +60,17 @@ def predict():
             dependents_1 = 1
             dependents_2 = 0
             dependents_3 = 0
+
         elif dependents == 2:
             dependents_1 = 0
             dependents_2 = 1
             dependents_3 = 0
+
         elif dependents == 3:
             dependents_1 = 0
             dependents_2 = 0
             dependents_3 = 1
+
         else:
             dependents_1 = 0
             dependents_2 = 0
@@ -126,7 +130,7 @@ def predict():
             res = {
                 "fulfillmentText": "COngrats, we have evaluated your application and you're eligible for loan. Our associate will contact you within 1-2 working days"
             }
-    return res
+    return jsonify(res)
 
 
 if __name__ == "__main__":
