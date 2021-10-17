@@ -40,11 +40,11 @@ def predict():
         res = {
             "fulfillmentText": "Sorry to keep you waiting, but we cannot process your application further as minimum age criteria for the loan is above 18 years.you're not eligible for the loan. Thanks for taking out the time",
         }
-    elif ApplicantIncome <= 8000:
+    elif ApplicantIncome <= 2000:
         res = {
             "fulfillmentText": "Sorry to keep you waiting, but we cannot process your application further as your income does not satisfy our minimum income criteria. Thanks for taking out the time"
         }
-    elif age >= 18 and age < 60 and ApplicantIncome > 8000:
+    elif age >= 18 and age < 60 and ApplicantIncome > 2000:
         if gender == "male":
             male = 1
         else:
