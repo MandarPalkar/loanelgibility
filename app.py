@@ -124,7 +124,8 @@ def predict():
             }
         else:
             res = {
-                "fulfillmentText": "COngrats, we have evaluated your application and you're eligible for loan. Our associate will contact you within 1-2 working days"
+                "fulfillmentText": "Congrats!!!, we have evaluated your application and you're eligible for loan.\nOur associate will contact you within 1-2 working days.\nPlease provide your personal mobile number",
+                "outputContext": "projects/loaneligibilitychatbot-fxit/agent/sessions/c280bd6b-709e-b0bd-54b1-f805729db9e8/contexts/contact_details",
             }
 
     # response = make_response(res)
